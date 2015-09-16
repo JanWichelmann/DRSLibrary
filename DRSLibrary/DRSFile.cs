@@ -431,11 +431,22 @@ namespace DRSLibrary
 		}
 
 		/// <summary>
+		/// Prüft, ob eine Ressource mit der gegebenen ID existiert.
+		/// </summary>
+		/// <param name="resourceID">Die zu suchende Ressourcen-ID.</param>
+		/// <returns></returns>
+		public bool ResourceExists(uint resourceID)
+		{
+			// Ressource existent?
+			return _files.ContainsKey(resourceID);
+		}
+
+		/// <summary>
 		/// Gibt die Daten der gegebenen Ressourcen-ID zurück.
 		/// </summary>
 		/// <param name="resourceID">Die ID der Ressource, deren Daten abgerufen werden sollen.</param>
 		/// <returns></returns>
-		public byte[] GetResourceData(ushort resourceID)
+		public byte[] GetResourceData(uint resourceID)
 		{
 			// Ressourcen-Daten zurückgeben
 			return _files[resourceID];
