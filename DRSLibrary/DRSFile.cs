@@ -668,6 +668,34 @@ namespace DRSLibrary
 				// Fertig
 				return ret;
 			}
+
+			/// <summary>
+			/// Wandelt die Struktur in ein exportierbares Binärformat um.
+			/// </summary>
+			/// <returns></returns>
+			public RAMBuffer ToBinary()
+			{
+				// Puffer erstellen
+				RAMBuffer buff = new RAMBuffer();
+
+				// DRS-Dateiname
+				buff.WriteUInteger((uint)DRSFile.Length);
+				buff.WriteString(DRSFile);
+
+				// Datei-ID
+				buff.WriteUInteger(FileID);
+
+				// Ressourcen-Typ
+				buff.WriteUInteger((uint)ResourceType.Length);
+				buff.WriteString(ResourceType);
+
+				// Data
+				buff.WriteUInteger((uint)Data.Length);
+				buff.Write(Data);
+
+				// Fertig
+				return buff;
+			}
 		}
 
 		#endregion Strukturen
