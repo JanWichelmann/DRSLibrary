@@ -160,19 +160,8 @@ namespace DRSLibrary
 					// Eintrag abrufen
 					currTableEntry = currTable.Entries[j];
 
-					// Fehlervorbeugung
-					if(!_files.ContainsKey(currTableEntry.FileID))
-					{
-						// Datei-ID gibt es noch nicht, einfach einlesen
-						_files.Add(currTableEntry.FileID, _buffer.ReadByteArray((int)currTableEntry.FileSize));
-					}
-					else
-					{
-						// Datei-ID existiert schon, an Platzhalter schreiben (TODO: Unschön...)
-						_files.Add(65535, _buffer.ReadByteArray((int)currTableEntry.FileSize));
-						currTableEntry.FileID = 65535;
-						_tables[i].Entries[j] = currTableEntry;
-					}
+					// Doppelte Dateien werden einfach von der letzten überschrieben
+					_files[currTableEntry.FileID] = _buffer.ReadByteArray((int)currTableEntry.FileSize);
 				}
 			}
 
