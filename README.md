@@ -1,0 +1,1 @@
+This library provides functions to read and write DRS resource files of *Age of Empires II: The Conquerors*.
